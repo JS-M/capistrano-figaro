@@ -12,7 +12,8 @@ namespace :figaro do
       fail LoadError, 'Configuration file not found!'
     end
 
-    Figaro.application = Figaro::Application.new(path: fetch(:figaro_path))
+    Figaro.application =
+        Figaro::Application.new(path: fetch(:figaro_path), environment: fetch(:rails_env) || fetch(:stage))
     Figaro.load
   end
 end
